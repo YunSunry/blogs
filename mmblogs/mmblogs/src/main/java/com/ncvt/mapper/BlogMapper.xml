@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncvt.mapper.BlogMapper">
+
+    <resultMap type="com.ncvt.entity.Blog" id="BlogMap">
+        <result property="blogId" column="blog_id" jdbcType="INTEGER"/>
+        <result property="blogText" column="blog_text" jdbcType="VARCHAR"/>
+        <result property="blogCreateTime" column="blog_create_time" jdbcType="TIMESTAMP"/>
+        <result property="blogPic" column="blog_pic" jdbcType="VARCHAR"/>
+        <result property="blogSharing" column="blog_sharing" jdbcType="INTEGER"/>
+        <result property="blogComment" column="blog_comment" jdbcType="VARCHAR"/>
+        <result property="blogLike" column="blog_like" jdbcType="INTEGER"/>
+        <result property="blogRegion" column="blog_region" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--    数据代码片段-->
+
+    <sql id="allColumn">
+        blog_id, blog_text, blog_create_time, blog_pic, blog_sharing, blog_comment, blog_like, blog_region,user_id
+    </sql>
+
+    <!--    查询所有-->
+    <select id="findAll" resultMap="BlogMap">
+        select <include refid="allColumn"></include>
+        from blog
+        where user_id=#{userId}
+    </select>
+
+<!--    根据id查询数据-->
+    <select id="findById" resultMap="BlogMap">
+        select <include refid="allColumn"></include>
+        from blog
+        where blog_id = #{blogId}
+    </select>
+
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="blogId" useGeneratedKeys="true">
+        insert into blog(blog_text, blog_create_time, blog_pic, blog_sharing, blog_comment, blog_like, blog_region,user_id)
+        values (#{blogText}, #{blogCreateTime}, #{blogPic}, #{blogSharing}, #{blogComment}, #{blogLike}, #{blogRegion},#{userId})
+    </insert>
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update blog
+        <set>
+            <if test="blogText != null and blogText != ''">
+                blog_text = #{blogText},
+            </if>
+            <if test="blogCreateTime != null">
+                blog_create_time = #{blogCreateTime},
+            </if>
+            <if test="blogPic != null and blogPic != ''">
+                blog_pic = #{blogPic},
+            </if>
+            <if test="blogSharing != null">
+                blog_sharing = #{blogSharing},
+            </if>
+            <if test="blogComment != null and blogComment != ''">
+                blog_comment = #{blogComment},
+            </if>
+            <if test="blogLike != null">
+                blog_like = #{blogLike},
+            </if>
+            <if test="blogRegion != null and blogRegion != ''">
+                blog_region = #{blogRegion},
+            </if>
+            <if test="userId != null and userId != ''">
+                user_id = #{userId},
+            </if>
+        </set>
+        where blog_id = #{blogId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from blog where blog_id = #{blogId}
+    </delete>
+
+</mapper>
+

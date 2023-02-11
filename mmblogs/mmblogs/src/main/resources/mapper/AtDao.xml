@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=".dao.AtDao">
+
+    <resultMap type=".entity.At" id="AtMap">
+        <result property="atId" column="at_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="atAvg" column="at_avg" jdbcType="VARCHAR"/>
+        <result property="atNickname" column="at_nickname" jdbcType="VARCHAR"/>
+        <result property="atDes" column="at_des" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AtMap">
+        select
+          at_id, user_id, at_avg, at_nickname, at_des
+        from at
+        where at_id = #{atId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AtMap">
+        select
+          at_id, user_id, at_avg, at_nickname, at_des
+        from at
+        <where>
+            <if test="atId != null">
+                and at_id = #{atId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="atAvg != null and atAvg != ''">
+                and at_avg = #{atAvg}
+            </if>
+            <if test="atNickname != null and atNickname != ''">
+                and at_nickname = #{atNickname}
+            </if>
+            <if test="atDes != null and atDes != ''">
+                and at_des = #{atDes}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from at
+        <where>
+            <if test="atId != null">
+                and at_id = #{atId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="atAvg != null and atAvg != ''">
+                and at_avg = #{atAvg}
+            </if>
+            <if test="atNickname != null and atNickname != ''">
+                and at_nickname = #{atNickname}
+            </if>
+            <if test="atDes != null and atDes != ''">
+                and at_des = #{atDes}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="atId" useGeneratedKeys="true">
+        insert into at(user_id, at_avg, at_nickname, at_des)
+        values (#{userId}, #{atAvg}, #{atNickname}, #{atDes})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="atId" useGeneratedKeys="true">
+        insert into at(user_id, at_avg, at_nickname, at_des)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.userId}, #{entity.atAvg}, #{entity.atNickname}, #{entity.atDes})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="atId" useGeneratedKeys="true">
+        insert into at(user_id, at_avg, at_nickname, at_des)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.atAvg}, #{entity.atNickname}, #{entity.atDes})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        at_avg = values(at_avg),
+        at_nickname = values(at_nickname),
+        at_des = values(at_des)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update at
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="atAvg != null and atAvg != ''">
+                at_avg = #{atAvg},
+            </if>
+            <if test="atNickname != null and atNickname != ''">
+                at_nickname = #{atNickname},
+            </if>
+            <if test="atDes != null and atDes != ''">
+                at_des = #{atDes},
+            </if>
+        </set>
+        where at_id = #{atId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from at where at_id = #{atId}
+    </delete>
+
+</mapper>
+

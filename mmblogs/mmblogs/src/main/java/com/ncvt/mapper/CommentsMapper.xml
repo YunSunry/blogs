@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncvt.mapper.CommentsMapper">
+
+    <resultMap type="com.ncvt.entity.Comments" id="CommentsMap">
+        <result property="commentsId" column="comments_id" jdbcType="INTEGER"/>
+        <result property="commentsText" column="comments_text" jdbcType="VARCHAR"/>
+        <result property="commentsLike" column="comments_like" jdbcType="INTEGER"/>
+        <result property="commentsSharing" column="comments_sharing" jdbcType="INTEGER"/>
+        <result property="commentsCom" column="comments_com" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="commentsAvg" column="comments_avg" jdbcType="VARCHAR"/>
+        <result property="commentsNickname" column="comments_nickname" jdbcType="VARCHAR"/>
+        <result property="hostId" column="host_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CommentsMap">
+        select
+            comments_id, comments_text, comments_like, comments_sharing, comments_com, create_time, comments_avg, comments_nickname, host_id
+        from comments
+        where host_id = #{hostId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CommentsMap">
+        select
+        comments_id, comments_text, comments_like, comments_sharing, comments_com, create_time, comments_avg, comments_nickname, host_id
+        from comments
+        <where>
+            <if test="commentsId != null">
+                and comments_id = #{commentsId}
+            </if>
+            <if test="commentsText != null and commentsText != ''">
+                and comments_text = #{commentsText}
+            </if>
+            <if test="commentsLike != null">
+                and comments_like = #{commentsLike}
+            </if>
+            <if test="commentsSharing != null">
+                and comments_sharing = #{commentsSharing}
+            </if>
+            <if test="commentsCom != null">
+                and comments_com = #{commentsCom}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="commentsAvg != null and commentsAvg != ''">
+                and comments_avg = #{commentsAvg}
+            </if>
+            <if test="commentsNickname != null and commentsNickname != ''">
+                and comments_nickname = #{commentsNickname}
+            </if>
+            <if test="hostId != null">
+                and host_id = #{hostId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Integer">
+        select count(*)
+        from comments
+        where host_id=#{hostId}
+<!--        <where>-->
+<!--            <if test="commentsId != null">-->
+<!--                and comments_id = #{commentsId}-->
+<!--            </if>-->
+<!--            <if test="commentsText != null and commentsText != ''">-->
+<!--                and comments_text = #{commentsText}-->
+<!--            </if>-->
+<!--            <if test="commentsLike != null">-->
+<!--                and comments_like = #{commentsLike}-->
+<!--            </if>-->
+<!--            <if test="commentsSharing != null">-->
+<!--                and comments_sharing = #{commentsSharing}-->
+<!--            </if>-->
+<!--            <if test="commentsCom != null">-->
+<!--                and comments_com = #{commentsCom}-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                and create_time = #{createTime}-->
+<!--            </if>-->
+<!--            <if test="commentsAvg != null and commentsAvg != ''">-->
+<!--                and comments_avg = #{commentsAvg}-->
+<!--            </if>-->
+<!--            <if test="commentsNickname != null and commentsNickname != ''">-->
+<!--                and comments_nickname = #{commentsNickname}-->
+<!--            </if>-->
+<!--            <if test="hostId != null">-->
+<!--                and host_id = #{hostId}-->
+<!--            </if>-->
+<!--        </where>-->
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="commentsId" useGeneratedKeys="true">
+        insert into comments(comments_text, comments_like, comments_sharing, comments_com, create_time, comments_avg, comments_nickname, host_id)
+        values (#{commentsText}, #{commentsLike}, #{commentsSharing}, #{commentsCom}, #{createTime}, #{commentsAvg}, #{commentsNickname}, #{hostId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="commentsId" useGeneratedKeys="true">
+        insert into comments(comments_text, comments_like, comments_sharing, comments_com, create_time, comments_avg, comments_nickname, host_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.commentsText}, #{entity.commentsLike}, #{entity.commentsSharing}, #{entity.commentsCom}, #{entity.createTime}, #{entity.commentsAvg}, #{entity.commentsNickname}, #{entity.hostId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="commentsId" useGeneratedKeys="true">
+        insert into comments(comments_text, comments_like, comments_sharing, comments_com, create_time, comments_avg, comments_nickname, host_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.commentsText}, #{entity.commentsLike}, #{entity.commentsSharing}, #{entity.commentsCom}, #{entity.createTime}, #{entity.commentsAvg}, #{entity.commentsNickname}, #{entity.hostId})
+        </foreach>
+        on duplicate key update
+        comments_text = values(comments_text),
+        comments_like = values(comments_like),
+        comments_sharing = values(comments_sharing),
+        comments_com = values(comments_com),
+        create_time = values(create_time),
+        comments_avg = values(comments_avg),
+        comments_nickname = values(comments_nickname),
+        host_id = values(host_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update comments
+        <set>
+            <if test="commentsText != null and commentsText != ''">
+                comments_text = #{commentsText},
+            </if>
+            <if test="commentsLike != null">
+                comments_like = #{commentsLike},
+            </if>
+            <if test="commentsSharing != null">
+                comments_sharing = #{commentsSharing},
+            </if>
+            <if test="commentsCom != null">
+                comments_com = #{commentsCom},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="commentsAvg != null and commentsAvg != ''">
+                comments_avg = #{commentsAvg},
+            </if>
+            <if test="commentsNickname != null and commentsNickname != ''">
+                comments_nickname = #{commentsNickname},
+            </if>
+            <if test="hostId != null">
+                host_id = #{hostId},
+            </if>
+        </set>
+        where comments_id = #{commentsId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from comments where comments_id = #{commentsId}
+    </delete>
+
+
+</mapper>
+

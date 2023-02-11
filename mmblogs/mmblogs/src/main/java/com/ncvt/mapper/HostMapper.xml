@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncvt.mapper.HostMapper">
+
+    <resultMap type="com.ncvt.entity.Host" id="HostMap">
+        <result property="hostId" column="host_id" jdbcType="INTEGER"/>
+        <result property="hostTitle" column="host_title" jdbcType="VARCHAR"/>
+        <result property="hostTitleHttp" column="host_title_http" jdbcType="VARCHAR"/>
+        <result property="hostTu" column="host_tu" jdbcType="VARCHAR"/>
+        <result property="hostTime" column="host_time" jdbcType="TIMESTAMP"/>
+        <result property="hoatFrom" column="hoat_from" jdbcType="VARCHAR"/>
+        <result property="hostWeiboText" column="host_weibo_text" jdbcType="VARCHAR"/>
+        <result property="hostWeiboTextHttp" column="host_weibo_text_http" jdbcType="VARCHAR"/>
+        <result property="hostSurltext" column="host_surltext" jdbcType="VARCHAR"/>
+        <result property="hostWeiboTextHttp1" column="host_weibo_text_http1" jdbcType="VARCHAR"/>
+        <result property="hostTu2" column="host_tu2" jdbcType="VARCHAR"/>
+        <result property="hostWeiboText3" column="host_weibo_text3" jdbcType="VARCHAR"/>
+        <result property="hostTu4" column="host_tu4" jdbcType="VARCHAR"/>
+        <result property="hostMboxcol" column="host_mboxcol" jdbcType="VARCHAR"/>
+        <result property="hostTime5" column="host_time5" jdbcType="TIMESTAMP"/>
+        <result property="hostMdiybtn" column="host_mdiybtn" jdbcType="VARCHAR"/>
+        <result property="hostMdiybtn6" column="host_mdiybtn6" jdbcType="VARCHAR"/>
+        <result property="hostMdiybtn7" column="host_mdiybtn7" jdbcType="VARCHAR"/>
+        <result property="hostTopic" column="host_topic" jdbcType="VARCHAR"/>
+        <result property="host2" column="host2" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="allColumn">
+        host_id, host_title, host_title_http, host_tu, host_time, hoat_from, host_weibo_text, host_weibo_text_http, host_surltext, host_weibo_text_http1, host_tu2, host_weibo_text3, host_tu4, host_mboxcol, host_time5, host_mdiybtn, host_mdiybtn6, host_mdiybtn7, host_topic, host2, type
+    </sql>
+
+<!--    查询所有信息-->
+    <select id="getAllHost" resultMap="HostMap">
+        select <include refid="allColumn"></include>
+        from host;
+    </select>
+
+    <select id="findById" resultMap="HostMap">
+        select <include refid="allColumn"></include>
+        from host
+        where host_id = #{hostId}
+    </select>
+
+<!--    分页查询-->
+    <select id="getHostByPage" parameterType="int" resultMap="HostMap">
+        select <include refid="allColumn"></include>
+        from host
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HostMap">
+        select
+            host_id, host_title, host_title_http, host_tu, host_time, hoat_from, host_weibo_text, host_weibo_text_http, host_surltext, host_weibo_text_http1, host_tu2, host_weibo_text3, host_tu4, host_mboxcol, host_time5, host_mdiybtn, host_mdiybtn6, host_mdiybtn7, host_topic, host2, type
+        from host
+        where host_id = #{hostId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HostMap">
+        select
+        host_id, host_title, host_title_http, host_tu, host_time, hoat_from, host_weibo_text, host_weibo_text_http, host_surltext, host_weibo_text_http1, host_tu2, host_weibo_text3, host_tu4, host_mboxcol, host_time5, host_mdiybtn, host_mdiybtn6, host_mdiybtn7, host_topic, host2, type
+        from host
+        <where>
+            <if test="hostId != null">
+                and host_id = #{hostId}
+            </if>
+            <if test="hostTitle != null and hostTitle != ''">
+                and host_title = #{hostTitle}
+            </if>
+            <if test="hostTitleHttp != null and hostTitleHttp != ''">
+                and host_title_http = #{hostTitleHttp}
+            </if>
+            <if test="hostTu != null and hostTu != ''">
+                and host_tu = #{hostTu}
+            </if>
+            <if test="hostTime != null">
+                and host_time = #{hostTime}
+            </if>
+            <if test="hoatFrom != null and hoatFrom != ''">
+                and hoat_from = #{hoatFrom}
+            </if>
+            <if test="hostWeiboText != null and hostWeiboText != ''">
+                and host_weibo_text = #{hostWeiboText}
+            </if>
+            <if test="hostWeiboTextHttp != null and hostWeiboTextHttp != ''">
+                and host_weibo_text_http = #{hostWeiboTextHttp}
+            </if>
+            <if test="hostSurltext != null and hostSurltext != ''">
+                and host_surltext = #{hostSurltext}
+            </if>
+            <if test="hostWeiboTextHttp1 != null and hostWeiboTextHttp1 != ''">
+                and host_weibo_text_http1 = #{hostWeiboTextHttp1}
+            </if>
+            <if test="hostTu2 != null and hostTu2 != ''">
+                and host_tu2 = #{hostTu2}
+            </if>
+            <if test="hostWeiboText3 != null and hostWeiboText3 != ''">
+                and host_weibo_text3 = #{hostWeiboText3}
+            </if>
+            <if test="hostTu4 != null and hostTu4 != ''">
+                and host_tu4 = #{hostTu4}
+            </if>
+            <if test="hostMboxcol != null and hostMboxcol != ''">
+                and host_mboxcol = #{hostMboxcol}
+            </if>
+            <if test="hostTime5 != null">
+                and host_time5 = #{hostTime5}
+            </if>
+            <if test="hostMdiybtn != null and hostMdiybtn != ''">
+                and host_mdiybtn = #{hostMdiybtn}
+            </if>
+            <if test="hostMdiybtn6 != null and hostMdiybtn6 != ''">
+                and host_mdiybtn6 = #{hostMdiybtn6}
+            </if>
+            <if test="hostMdiybtn7 != null and hostMdiybtn7 != ''">
+                and host_mdiybtn7 = #{hostMdiybtn7}
+            </if>
+            <if test="hostTopic != null and hostTopic != ''">
+                and host_topic = #{hostTopic}
+            </if>
+            <if test="host2 != null and host2 != ''">
+                and host2 = #{host2}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from host
+        <where>
+            <if test="hostId != null">
+                and host_id = #{hostId}
+            </if>
+            <if test="hostTitle != null and hostTitle != ''">
+                and host_title = #{hostTitle}
+            </if>
+            <if test="hostTitleHttp != null and hostTitleHttp != ''">
+                and host_title_http = #{hostTitleHttp}
+            </if>
+            <if test="hostTu != null and hostTu != ''">
+                and host_tu = #{hostTu}
+            </if>
+            <if test="hostTime != null">
+                and host_time = #{hostTime}
+            </if>
+            <if test="hoatFrom != null and hoatFrom != ''">
+                and hoat_from = #{hoatFrom}
+            </if>
+            <if test="hostWeiboText != null and hostWeiboText != ''">
+                and host_weibo_text = #{hostWeiboText}
+            </if>
+            <if test="hostWeiboTextHttp != null and hostWeiboTextHttp != ''">
+                and host_weibo_text_http = #{hostWeiboTextHttp}
+            </if>
+            <if test="hostSurltext != null and hostSurltext != ''">
+                and host_surltext = #{hostSurltext}
+            </if>
+            <if test="hostWeiboTextHttp1 != null and hostWeiboTextHttp1 != ''">
+                and host_weibo_text_http1 = #{hostWeiboTextHttp1}
+            </if>
+            <if test="hostTu2 != null and hostTu2 != ''">
+                and host_tu2 = #{hostTu2}
+            </if>
+            <if test="hostWeiboText3 != null and hostWeiboText3 != ''">
+                and host_weibo_text3 = #{hostWeiboText3}
+            </if>
+            <if test="hostTu4 != null and hostTu4 != ''">
+                and host_tu4 = #{hostTu4}
+            </if>
+            <if test="hostMboxcol != null and hostMboxcol != ''">
+                and host_mboxcol = #{hostMboxcol}
+            </if>
+            <if test="hostTime5 != null">
+                and host_time5 = #{hostTime5}
+            </if>
+            <if test="hostMdiybtn != null and hostMdiybtn != ''">
+                and host_mdiybtn = #{hostMdiybtn}
+            </if>
+            <if test="hostMdiybtn6 != null and hostMdiybtn6 != ''">
+                and host_mdiybtn6 = #{hostMdiybtn6}
+            </if>
+            <if test="hostMdiybtn7 != null and hostMdiybtn7 != ''">
+                and host_mdiybtn7 = #{hostMdiybtn7}
+            </if>
+            <if test="hostTopic != null and hostTopic != ''">
+                and host_topic = #{hostTopic}
+            </if>
+            <if test="host2 != null and host2 != ''">
+                and host2 = #{host2}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="hostId" useGeneratedKeys="true">
+        insert into host(host_title, host_title_http, host_tu, host_time, hoat_from, host_weibo_text, host_weibo_text_http, host_surltext, host_weibo_text_http1, host_tu2, host_weibo_text3, host_tu4, host_mboxcol, host_time5, host_mdiybtn, host_mdiybtn6, host_mdiybtn7, host_topic, host2, type)
+        values (#{hostTitle}, #{hostTitleHttp}, #{hostTu}, #{hostTime}, #{hoatFrom}, #{hostWeiboText}, #{hostWeiboTextHttp}, #{hostSurltext}, #{hostWeiboTextHttp1}, #{hostTu2}, #{hostWeiboText3}, #{hostTu4}, #{hostMboxcol}, #{hostTime5}, #{hostMdiybtn}, #{hostMdiybtn6}, #{hostMdiybtn7}, #{hostTopic}, #{host2}, #{type})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="hostId" useGeneratedKeys="true">
+        insert into host(host_title, host_title_http, host_tu, host_time, hoat_from, host_weibo_text, host_weibo_text_http, host_surltext, host_weibo_text_http1, host_tu2, host_weibo_text3, host_tu4, host_mboxcol, host_time5, host_mdiybtn, host_mdiybtn6, host_mdiybtn7, host_topic, host2, type)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.hostTitle}, #{entity.hostTitleHttp}, #{entity.hostTu}, #{entity.hostTime}, #{entity.hoatFrom}, #{entity.hostWeiboText}, #{entity.hostWeiboTextHttp}, #{entity.hostSurltext}, #{entity.hostWeiboTextHttp1}, #{entity.hostTu2}, #{entity.hostWeiboText3}, #{entity.hostTu4}, #{entity.hostMboxcol}, #{entity.hostTime5}, #{entity.hostMdiybtn}, #{entity.hostMdiybtn6}, #{entity.hostMdiybtn7}, #{entity.hostTopic}, #{entity.host2}, #{entity.type})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="hostId" useGeneratedKeys="true">
+        insert into host(host_title, host_title_http, host_tu, host_time, hoat_from, host_weibo_text, host_weibo_text_http, host_surltext, host_weibo_text_http1, host_tu2, host_weibo_text3, host_tu4, host_mboxcol, host_time5, host_mdiybtn, host_mdiybtn6, host_mdiybtn7, host_topic, host2, type)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.hostTitle}, #{entity.hostTitleHttp}, #{entity.hostTu}, #{entity.hostTime}, #{entity.hoatFrom}, #{entity.hostWeiboText}, #{entity.hostWeiboTextHttp}, #{entity.hostSurltext}, #{entity.hostWeiboTextHttp1}, #{entity.hostTu2}, #{entity.hostWeiboText3}, #{entity.hostTu4}, #{entity.hostMboxcol}, #{entity.hostTime5}, #{entity.hostMdiybtn}, #{entity.hostMdiybtn6}, #{entity.hostMdiybtn7}, #{entity.hostTopic}, #{entity.host2}, #{entity.type})
+        </foreach>
+        on duplicate key update
+        host_title = values(host_title),
+        host_title_http = values(host_title_http),
+        host_tu = values(host_tu),
+        host_time = values(host_time),
+        hoat_from = values(hoat_from),
+        host_weibo_text = values(host_weibo_text),
+        host_weibo_text_http = values(host_weibo_text_http),
+        host_surltext = values(host_surltext),
+        host_weibo_text_http1 = values(host_weibo_text_http1),
+        host_tu2 = values(host_tu2),
+        host_weibo_text3 = values(host_weibo_text3),
+        host_tu4 = values(host_tu4),
+        host_mboxcol = values(host_mboxcol),
+        host_time5 = values(host_time5),
+        host_mdiybtn = values(host_mdiybtn),
+        host_mdiybtn6 = values(host_mdiybtn6),
+        host_mdiybtn7 = values(host_mdiybtn7),
+        host_topic = values(host_topic),
+        host2 = values(host2),
+        type = values(type)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update host
+        <set>
+            <if test="hostTitle != null and hostTitle != ''">
+                host_title = #{hostTitle},
+            </if>
+            <if test="hostTitleHttp != null and hostTitleHttp != ''">
+                host_title_http = #{hostTitleHttp},
+            </if>
+            <if test="hostTu != null and hostTu != ''">
+                host_tu = #{hostTu},
+            </if>
+            <if test="hostTime != null">
+                host_time = #{hostTime},
+            </if>
+            <if test="hoatFrom != null and hoatFrom != ''">
+                hoat_from = #{hoatFrom},
+            </if>
+            <if test="hostWeiboText != null and hostWeiboText != ''">
+                host_weibo_text = #{hostWeiboText},
+            </if>
+            <if test="hostWeiboTextHttp != null and hostWeiboTextHttp != ''">
+                host_weibo_text_http = #{hostWeiboTextHttp},
+            </if>
+            <if test="hostSurltext != null and hostSurltext != ''">
+                host_surltext = #{hostSurltext},
+            </if>
+            <if test="hostWeiboTextHttp1 != null and hostWeiboTextHttp1 != ''">
+                host_weibo_text_http1 = #{hostWeiboTextHttp1},
+            </if>
+            <if test="hostTu2 != null and hostTu2 != ''">
+                host_tu2 = #{hostTu2},
+            </if>
+            <if test="hostWeiboText3 != null and hostWeiboText3 != ''">
+                host_weibo_text3 = #{hostWeiboText3},
+            </if>
+            <if test="hostTu4 != null and hostTu4 != ''">
+                host_tu4 = #{hostTu4},
+            </if>
+            <if test="hostMboxcol != null and hostMboxcol != ''">
+                host_mboxcol = #{hostMboxcol},
+            </if>
+            <if test="hostTime5 != null">
+                host_time5 = #{hostTime5},
+            </if>
+            <if test="hostMdiybtn != null and hostMdiybtn != ''">
+                host_mdiybtn = #{hostMdiybtn},
+            </if>
+            <if test="hostMdiybtn6 != null and hostMdiybtn6 != ''">
+                host_mdiybtn6 = #{hostMdiybtn6},
+            </if>
+            <if test="hostMdiybtn7 != null and hostMdiybtn7 != ''">
+                host_mdiybtn7 = #{hostMdiybtn7},
+            </if>
+            <if test="hostTopic != null and hostTopic != ''">
+                host_topic = #{hostTopic},
+            </if>
+            <if test="host2 != null and host2 != ''">
+                host2 = #{host2},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+        </set>
+        where host_id = #{hostId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from host where host_id = #{hostId}
+    </delete>
+
+</mapper>
+
