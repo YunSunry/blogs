@@ -16,6 +16,7 @@
 <img width="1888" height="787" alt="image" src="https://github.com/user-attachments/assets/1c802133-94a5-41d9-b171-9ace59f39601" />
     - 填写相关信息
       - 注意换算单位 英国的不用换算单位，美国的要换算，lm换算成in,kg换算车工lb(磅)
+      - 这里需要填写一个公司的相关信息 公司中文名：深圳大夏龙雀科技有限公司    英文名：Shenzhen DX-SMART Technology Co., Ltd.
 
  
   
