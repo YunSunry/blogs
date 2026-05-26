@@ -9,13 +9,13 @@
     
       
 ## 2.亚马逊下单（美国站点和英国站点）
-  ### 登录亚马逊后台
+  ### （1）登录亚马逊后台
     - 如果有需要选择的要选择亚马逊配送的
 <img width="1889" height="892" alt="image" src="https://github.com/user-attachments/assets/5a0e96c4-4492-4fab-a79c-810e78fa3f50" />
 
  
   
-  ### 填写清关信息
+  ### （2）填写清关信息
     - 填写清关信息模板  
     - 产品名称中英文  
         -（1）英文名称：LORA MODULE  中文名称：LORA 模块
@@ -25,7 +25,7 @@
 <img width="1853" height="847" alt="image" src="https://github.com/user-attachments/assets/a2519422-791e-493e-8721-cbb63032c1b7" />
 
   
-  ### 打印物流信息，一式两份
+  ### （3）打印物流信息，一式两份
     - 贴在侧边（一边两张，一个有二维码的，一个没有二维码）
 
 ## 3.发送信息给提货方来提货(群里发送)
