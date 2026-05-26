@@ -12,6 +12,10 @@
   ### （1）登录亚马逊后台
     - 如果有需要选择的要选择亚马逊配送的
 <img width="1889" height="892" alt="image" src="https://github.com/user-attachments/assets/5a0e96c4-4492-4fab-a79c-810e78fa3f50" />
+    - 选择需要备货的产品（如果不确定是不是，就下载sku核对是否一致，相关的sku编码信息可以在U盘查看）
+<img width="1888" height="787" alt="image" src="https://github.com/user-attachments/assets/1c802133-94a5-41d9-b171-9ace59f39601" />
+    - 填写相关信息
+      - 注意换算单位 英国的不用换算单位，美国的要换算，lm换算成in,kg换算车工lb(磅)
 
  
   
