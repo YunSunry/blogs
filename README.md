@@ -6,12 +6,14 @@
     - CP26/24套餐的箱子，待更细
     - 蓝牙信标的箱子  45*35*35
   ### 贴标签
-    ）
+    
       
 ## 2.亚马逊下单（美国站点和英国站点）
   ### 登录亚马逊后台
     - 如果有需要选择的要选择亚马逊配送的
-  <img width="1909" height="1024" alt="image" src="https://github.com/user-attachments/assets/adecb3c9-09d1-40b3-b470-93c35aa74bcb" />
+<img width="1889" height="892" alt="image" src="https://github.com/user-attachments/assets/5a0e96c4-4492-4fab-a79c-810e78fa3f50" />
+
+ 
   
   ### 填写清关信息
     - 填写清关信息模板  
@@ -20,7 +22,8 @@
         -（2）蓝牙系列：英文名称：Wireless communication module     中文名称：无线通信模块   比如CP26
         -（3）CP27 28 29 35 33      英文名称：BEACON:Wireless Beacon   中文名称：无线信标 
     - 品牌 PDDAXLQUE  清关编码 8517629200
-    <img width="1875" height="797" alt="微信图片_2026-05-23_181932_259(1)" src="https://github.com/user-attachments/assets/fd60a7d2-ed44-4e84-af76-41305c1e8624" />
+<img width="1853" height="847" alt="image" src="https://github.com/user-attachments/assets/a2519422-791e-493e-8721-cbb63032c1b7" />
+
   
   ### 打印物流信息，一式两份
     - 贴在侧边（一边两张，一个有二维码的，一个没有二维码）
