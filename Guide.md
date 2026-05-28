@@ -121,10 +121,8 @@ Read ChipInfo(R)
 
 ---
 
-
-
-🌐 官网：https://www.dx-smart.com
-
+📧 Email: manager@szdx-smart.com
+💬 WhatsApp: +86 15798463070
 🏢 深圳大夏龙雀科技有限公司
 Shenzhen DX-SMART Technology Co., Ltd.
 
