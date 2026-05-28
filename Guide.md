@@ -57,6 +57,8 @@ Read ChipInfo(R)
 * 如果成功读取芯片信息 → 设置正常
 * 如果失败 → 继续步骤 4
 <img width="864" height="648" alt="image" src="https://github.com/user-attachments/assets/563c3fa0-863e-4e11-adec-da816c91604d" />
+<img width="667" height="737" alt="image" src="https://github.com/user-attachments/assets/7f9cd1de-5336-4645-aa5b-fd5b58381637" />
+
 
 ---
 
