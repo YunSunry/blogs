@@ -11,6 +11,8 @@
 ### 如何识别：
 
 请根据开发板外观对比确认您的版本。
+<img width="1266" height="558" alt="WPS圖片(1)" src="https://github.com/user-attachments/assets/52ef53a4-013f-41b2-9483-8a17c08e33f2" />
+
 
 ---
 
@@ -29,6 +31,8 @@
 * 更换电脑 USB 接口
 * 检查 USB 数据线是否支持数据传输
 * 重新安装 USB 串口驱动
+<img width="841" height="962" alt="wechat_2026-05-28_110105_842" src="https://github.com/user-attachments/assets/9c225a8c-e6f8-435b-85b0-cd35b2bbef9b" />
+
 
 ---
 
